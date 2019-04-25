@@ -17,4 +17,12 @@ describe('User unit tests', () => {
     });
   });
 
+  it('requires a username', () => {
+    const user = new User({
+      profilePic: 'string'
+    });
+    const errors = user.validateSync().errors;
+    expect(errors.username.message).toEqual('Path `username` is required.');
+  });
+
 });
