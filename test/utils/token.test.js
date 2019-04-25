@@ -10,5 +10,22 @@ describe('JWT token', () => {
     });
     expect(token).toEqual(expect.any(String));
   });
+
+  it('can untokenize a token', () => {
+    const token = tokenize({
+      username: 'username',
+      photourl: 'here'
+    });
+    const obj = untokenize(token);
+
+    expect(obj).toEqual({
+      username: 'username',
+      photourl: 'here'
+    });
+  });
+
+  it('can untokenize a fake token', () => {
+    expect(() => untokenize('12345')).toThrow('Bad token');
+  });
     
 });
